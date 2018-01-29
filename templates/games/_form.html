@@ -1,0 +1,15 @@
+<%= f.InputTag("Name") %>
+<%= f.InputTag("X") %>
+<%= f.InputTag("Y") %>
+<%= f.SelectTag("Density", {
+    label: "Density (stars per 1000 square light years)",
+    options: {
+        "10 (very low)": 10,
+        "20 (low)": 20,
+        "30 (medium)": 30,
+        "45 (high)": 45,
+        "60 (very high)": 60,
+    },
+    value: 30,
+}) %>
+<button class="btn btn-success" role="submit">Save</button>

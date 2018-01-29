@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Game#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= gamesPath() %>" class="btn btn-info">Back to all Games</a></li>
+  <li><a href="<%= gamePath({ game_id: game.ID }) %>/stars" class="btn btn-info">View game stars</a></li>
+  <li><a href="<%= editGamePath({ game_id: game.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= gamePath({ game_id: game.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= game.Name %>
+</p>
+<p>
+  <strong>X</strong>: <%= game.X %>
+</p>
+<p>
+  <strong>Y</strong>: <%= game.Y %>
+</p>
+<p>
+  <strong>Density</strong>: <%= game.Density %>
+</p>

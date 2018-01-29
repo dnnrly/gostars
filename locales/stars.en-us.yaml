@@ -1,0 +1,6 @@
+- id: "star.created.success"
+  translation: "Star was successfully created."
+- id: "star.updated.success"
+  translation: "Star was successfully updated."
+- id: "star.destroyed.success"
+  translation: "Star was successfully destroyed."

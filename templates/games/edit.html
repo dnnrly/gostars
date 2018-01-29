@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Edit Game</h1>
+</div>
+
+<%= form_for(game, {action: gamePath({ game_id: game.ID }), method: "PUT"}) { %>
+  <%= partial("games/form.html") %>
+  <a href="<%= gamePath({ game_id: game.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

@@ -1,0 +1,11 @@
+development:
+  dialect: "sqlite3"
+  database: /home/dennerly/projects/gostars/src/github.com/dnnrly/gostars/gostars_development.sqlite
+
+test:
+  dialect: "sqlite3"
+  database: /home/dennerly/projects/gostars/src/github.com/dnnrly/gostars/gostars_test.sqlite
+
+production:
+  dialect: "sqlite3"
+  database: /home/dennerly/projects/gostars/src/github.com/dnnrly/gostars/gostars_production.sqlite
