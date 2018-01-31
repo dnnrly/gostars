@@ -26,7 +26,7 @@ type StarsResource struct {
 
 // List gets all Stars. This function is mapped to the path
 // GET /stars
-func (v StarsResource) List(c buffalo.Context) error {
+func StarsList(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
 	if !ok {
@@ -64,7 +64,7 @@ func (v StarsResource) List(c buffalo.Context) error {
 
 // Show gets the data for one Star. This function is mapped to
 // the path GET /stars/{star_id}
-func (v StarsResource) Show(c buffalo.Context) error {
+func StarsShow(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
 	if !ok {
@@ -92,34 +92,4 @@ func (v StarsResource) Show(c buffalo.Context) error {
 	c.Set("star", star)
 
 	return c.Render(200, r.HTML("stars/show.html"))
-}
-
-// New renders the form for creating a new Star.
-// This function is mapped to the path GET /stars/new
-func (v StarsResource) New(c buffalo.Context) error {
-	return c.Error(404, errors.New("not found"))
-}
-
-// Create adds a Star to the DB. This function is mapped to the
-// path POST /stars
-func (v StarsResource) Create(c buffalo.Context) error {
-	return c.Error(405, errors.New("method not allowed"))
-}
-
-// Edit renders a edit form for a Star. This function is
-// mapped to the path GET /stars/{star_id}/edit
-func (v StarsResource) Edit(c buffalo.Context) error {
-	return c.Error(404, errors.New("not found"))
-}
-
-// Update changes a Star in the DB. This function is mapped to
-// the path PUT /stars/{star_id}
-func (v StarsResource) Update(c buffalo.Context) error {
-	return c.Error(405, errors.New("method not allowed"))
-}
-
-// Destroy deletes a Star from the DB. This function is mapped
-// to the path DELETE /stars/{star_id}
-func (v StarsResource) Destroy(c buffalo.Context) error {
-	return c.Error(405, errors.New("method not allowed"))
 }
