@@ -5,7 +5,7 @@ import (
 
 	"github.com/dnnrly/gostars/models"
 	"github.com/gobuffalo/buffalo"
-	"github.com/markbates/pop"
+	"github.com/gobuffalo/pop"
 	"github.com/pkg/errors"
 )
 
