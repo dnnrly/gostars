@@ -56,10 +56,11 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
-		app.ServeFiles("/assets", assetsBox)
-		app.Resource("/games", GamesResource{})
-		app.GET("/games/{game_id}/stars", StarsList)
-		app.GET("/games/{game_id}/stars/{star_id}", StarsShow)
+		games := app.Resource("/games", GamesResource{})
+		games.GET("/stars", StarsList)
+		games.GET("/stars/{star_id}", StarsShow)
+
+		app.ServeFiles("/", assetsBox)
 	}
 
 	return app
