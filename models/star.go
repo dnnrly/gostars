@@ -2,7 +2,6 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 	"math/rand"
 	"time"
 
@@ -21,12 +20,12 @@ type Star struct {
 	GameID    uuid.UUID `json:"game_id" db:"game_id"`
 }
 
-func NewStar(g *Game) *Star {
+func NewStar(name string, g *Game) *Star {
 	x := rand.Float64() * g.X
 	y := rand.Float64() * g.Y
 
 	star := &Star{
-		Name:     fmt.Sprintf("Star(%f,%f)", x, y),
+		Name:     name,
 		Location: &Location{X: x, Y: y},
 		GameID:   g.ID,
 	}

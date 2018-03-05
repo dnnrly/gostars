@@ -1,6 +1,8 @@
 package actions
 
 import (
+	"strings"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo/middleware"
 	"github.com/gobuffalo/buffalo/middleware/ssl"
@@ -18,6 +20,7 @@ import (
 var ENV = envy.Get("GO_ENV", "development")
 var app *buffalo.App
 var T *i18n.Translator
+var starNames nameList
 
 // App is where all routes and middleware for buffalo
 // should be defined. This is the nerve center of your
@@ -37,6 +40,10 @@ func App() *buffalo.App {
 		if ENV == "development" {
 			app.Use(middleware.ParameterLogger)
 		}
+
+		dataBox := packr.NewBox("../data")
+		names := strings.Split(dataBox.String("starnames.txt"), "\n")
+		starNames = newNameList(names)
 
 		// Protect against CSRF attacks. https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 		// Remove to disable this.

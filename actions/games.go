@@ -112,8 +112,9 @@ func (v GamesResource) Create(c buffalo.Context) error {
 
 	area := game.X * game.Y
 	numStars := int(area/1000.0) * game.Density
+	names := starNames.GetNames(numStars)
 	for i := 0; i < numStars; i++ {
-		s := models.NewStar(game)
+		s := models.NewStar(names[i], game)
 		err := tx.Create(s)
 		if err != nil {
 			return errors.WithStack(err)
