@@ -7,12 +7,15 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/unixpickle/markovchain"
 )
 
 func main() {
 	numWords := flag.Int("words", 10, "maximum number of words to print")
+	minLength := flag.Int("min", 5, "minimum length of words")
+	maxLength := flag.Int("max", 20, "maximum length of words")
 	prefixLen := flag.Int("prefix", 8, "prefix length in words")
 	source := flag.String("source", "", "file with source text")
 	flag.Parse()
@@ -46,6 +49,8 @@ func main() {
 		existing[strings.ToLower(v)] = true
 	}
 
+	rand.Seed(time.Now().UnixNano())
+
 	chain := markovchain.NewChainText(fieldChan, historySize)
 	state := randomStart(chain)
 	word := ""
@@ -54,16 +59,17 @@ func main() {
 		ts := state.(markovchain.TextState)
 		ch := ts[len(ts)-1]
 
-		if ch == "\n" {
-			if len(word) < 15 && !existing[strings.ToLower(word)] {
+		if ch == "\n" || len(word) == *maxLength {
+			word = strings.Trim(word, " \n-_")
+			if len(word) >= *minLength && !existing[strings.ToLower(word)] {
 				names = append(names, word)
 			}
 			word = ""
+			state = randomStart(chain)
 		} else {
 			word += ch
+			state = randomTransition(chain, state)
 		}
-
-		state = randomTransition(chain, state)
 	}
 
 	for _, v := range names {
