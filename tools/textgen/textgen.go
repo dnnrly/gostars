@@ -15,6 +15,7 @@ import (
 func main() {
 	numWords := flag.Int("words", 10, "maximum number of words to print")
 	minLength := flag.Int("min", 5, "minimum length of words")
+	maxLength := flag.Int("max", 20, "maximum length of words")
 	prefixLen := flag.Int("prefix", 8, "prefix length in words")
 	source := flag.String("source", "", "file with source text")
 	flag.Parse()
@@ -58,7 +59,7 @@ func main() {
 		ts := state.(markovchain.TextState)
 		ch := ts[len(ts)-1]
 
-		if ch == "\n" {
+		if ch == "\n" || len(word) == *maxLength {
 			word = strings.Trim(word, " \n-_")
 			if len(word) >= *minLength && !existing[strings.ToLower(word)] {
 				names = append(names, word)
