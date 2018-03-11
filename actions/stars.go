@@ -24,7 +24,7 @@ type StarsResource struct {
 	buffalo.Resource
 }
 
-// List gets all Stars. This function is mapped to the path
+// StarsList gets all Stars. This function is mapped to the path
 // GET /stars
 func StarsList(c buffalo.Context) error {
 	// Get the DB connection from the context
@@ -53,7 +53,6 @@ func StarsList(c buffalo.Context) error {
 	}
 
 	// Make Stars available inside the html template
-	c.Set("game", game)
 	c.Set("stars", stars)
 
 	// Add the paginator to the context so it can be used in the template.
@@ -62,7 +61,7 @@ func StarsList(c buffalo.Context) error {
 	return c.Render(200, r.HTML("stars/index.html"))
 }
 
-// Show gets the data for one Star. This function is mapped to
+// StarsShow gets the data for one Star. This function is mapped to
 // the path GET /stars/{star_id}
 func StarsShow(c buffalo.Context) error {
 	// Get the DB connection from the context
@@ -88,7 +87,6 @@ func StarsShow(c buffalo.Context) error {
 	}
 
 	// Make star available inside the html template
-	c.Set("game", game)
 	c.Set("star", star)
 
 	return c.Render(200, r.HTML("stars/show.html"))

@@ -66,6 +66,7 @@ func App() *buffalo.App {
 		games := app.Resource("/games", GamesResource{})
 		games.GET("/stars", StarsList)
 		games.GET("/stars/{star_id}", StarsShow)
+		games.Use(GameIdMiddleware)
 
 		app.ServeFiles("/", assetsBox)
 	}

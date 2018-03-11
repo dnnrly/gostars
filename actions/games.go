@@ -233,3 +233,11 @@ func (v GamesResource) Destroy(c buffalo.Context) error {
 	// Redirect to the games index page
 	return c.Redirect(302, "/games")
 }
+
+func GameIdMiddleware(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		gameId := c.Param("game_id")
+		c.Set("game_id", gameId)
+		return next(c)
+	}
+}

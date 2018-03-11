@@ -2,7 +2,7 @@
   <h1>Stars</h1>
 </div>
 <ul class="list-unstyled list-inline">
-  <li><a href="<%= gamePath({ game_id: game.ID }) %>" class="btn btn-info">Back to game</a></li>
+  <li><a href="<%= gamePath({ game_id: game_id }) %>" class="btn btn-info">Back to game</a></li>
 </ul>
 
 
@@ -23,7 +23,7 @@
         <td><%= star.GameID %></td>
         <td>
           <div class="pull-right">
-            <a href="<%= gamePath({ game_id: game.ID }) %>/stars/<%= star.ID %>" class="btn btn-info">View</a>
+            <a href="<%= gamePath({ game_id: game_id }) %>/stars/<%= star.ID %>" class="btn btn-info">View</a>
           </div>
         </td>
       </tr>
